@@ -22,6 +22,7 @@ class UserController extends Controller
      */
     public function create(): JsonResponse
     {   
+        $this->request->definePostSchema(['email' => 'string', 'name' => 'string', 'description' => 'string', 'password' => 'string']);
         //'password'=>'setPassword()' call the setPassword() method in the UserModel class
         $model = $this->request->mapPostToObject(new UserModel(),['email'=>'email','name'=>'name','description'=>'description','password'=>'setPassword()']);
         if(!$model instanceof UserModel) {
@@ -37,6 +38,7 @@ class UserController extends Controller
      */
     public function read(): JsonResponse
     {
+        $this->request->definePostSchema(['id' => 'int']);
         $model = $this->request->mapPostToObject(new UserModel());
         if(!$model instanceof UserModel) {
             return $this->request->returnResponse();
@@ -51,6 +53,7 @@ class UserController extends Controller
      */
     public function update(): JsonResponse
     {
+        $this->request->definePostSchema(['id' => 'int', 'email' => 'string', 'name' => 'string', 'description' => 'string']);
         $model = $this->request->mapPostToObject(new UserModel());
         if(!$model instanceof UserModel) {
             return $this->request->returnResponse();
@@ -65,6 +68,7 @@ class UserController extends Controller
      */
     public function delete(): JsonResponse
     {
+        $this->request->definePostSchema(['id' => 'int']);
         $model = $this->request->mapPostToObject(new UserModel());
         if(!$model) {
             return $this->request->returnResponse();

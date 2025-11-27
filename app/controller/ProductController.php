@@ -21,6 +21,7 @@ class ProductController extends Controller
      */
     public function create(): JsonResponse
     {
+        $this->request->definePostSchema(['name' => 'string', 'description' => 'string']);
         $model = $this->request->mapPostToObject(new ProductModel());
         if(!$model instanceof ProductModel) {
             return $this->request->returnResponse();
@@ -35,6 +36,7 @@ class ProductController extends Controller
      */
     public function read(): JsonResponse
     {
+        $this->request->definePostSchema(['id' => 'int']);
         $model = $this->request->mapPostToObject(new ProductModel());
         if(!$model instanceof ProductModel) {
             return $this->request->returnResponse();
@@ -49,6 +51,7 @@ class ProductController extends Controller
      */
     public function update(): JsonResponse
     {
+        $this->request->definePostSchema(['id' => 'int', 'name' => 'string', 'description' => 'string']);
         $model = $this->request->mapPostToObject(new ProductModel());
         if(!$model instanceof ProductModel) {
             return $this->request->returnResponse();
@@ -63,6 +66,7 @@ class ProductController extends Controller
      */
     public function delete(): JsonResponse
     {
+        $this->request->definePostSchema(['id' => 'int']);
         $model = $this->request->mapPostToObject(new ProductModel());
         if(!$model) {
             return $this->request->returnResponse();
